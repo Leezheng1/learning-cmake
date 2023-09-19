@@ -1,19 +1,19 @@
-cmake_minimum_required(VERSION 2.8.4)
+cmake_minimum_required(VERSION 3.19.0)
 
-set(LIBHELLO_SRC hello.c)
+set(CMAKE_CXX_STANDARD 11)
 
-add_library(hello_dynamic SHARED ${LIBHELLO_SRC})
-add_library(hello_static STATIC ${LIBHELLO_SRC})
+# 导入库头文件目录
+include_directories(${PROJECT_SOURCE_DIR}/libhello)
 
-set_target_properties(hello_dynamic PROPERTIES OUTPUT_NAME "hello")
-set_target_properties(hello_dynamic PROPERTIES VERSION 1.2 SOVERSION 1)
+# 添加库文件所在的目录
+link_directories(${PROJECT_BINARY_DIR}/lib)
 
-set_target_properties(hello_static PROPERTIES OUTPUT_NAME "hello")
+set(LIBHELLO_SRC main.cpp)
 
-set(LIBRARY_OUTPUT_PATH ${PROJECT_BINARY_DIR}/lib)
+#设置输出目录
+set(EXECUTABLE_OUTPUT_PATH ${PROJECT_BINARY_DIR}/bin)
 
-install(TARGETS hello_dynamic hello_static
-        LIBRARY DESTINATION lib
-        ARCHIVE DESTINATION lib)
-        
-install(FILES hello.h DESTINATION include/hello)
+add_executable(hellomain ${LIBHELLO_SRC})
+
+target_link_libraries(hellomain hello)
+
