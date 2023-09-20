@@ -1,10 +1,10 @@
-cmake_minimum_required(VERSION 2.8.4)
+cmake_minimum_required(VERSION 3.19.0)
 
-add_executable(main main.c)
+add_executable(main main.cpp)
 
 include_directories(../include/hello)
 
-find_library(HELLO_LIB NAMES hello PATHS "../lib/")
+find_library(HELLO_LIB NAMES hello PATHS "../lib/Debug/")
 
 message(STATUS "Library path HELLO_LIB is " ${HELLO_LIB})
 
