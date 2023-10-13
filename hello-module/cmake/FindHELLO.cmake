@@ -1,6 +1,9 @@
 
-find_path(HELLO_INCLUDE_DIR hello.h /usr/local/include/hello)
-find_library(HELLO_LIBRARY NAMES hello PATH /usr/local/lib)
+#set(CMAKE_INCLUDE_PATH "../hello")
+#set(CMAKE_LIBRARY_PATH "../hello")
+
+find_path(HELLO_INCLUDE_DIR my_lib2.h ../hello/include/hello/)
+find_library(HELLO_LIBRARY NAMES hello PATHS "../hello/lib/Debug/")
 
 if(HELLO_INCLUDE_DIR AND HELLO_LIBRARY)
   SET(HELLO_FOUND true)
